@@ -391,6 +391,19 @@ pub fn ecrecover(
     }
 }
 
+pub fn verify_bls12_381(aggregate_signature: &[u8],
+                        msg: &[u8],
+                        pubkeys: &[u8]) -> u64 {
+    unsafe {
+        sys::verify_bls12_381(aggregate_signature.as_ptr() as _,
+                              aggregate_signature.len() as _,
+                              msg.as_ptr() as _,
+                              msg.len() as _,
+                              pubkeys.as_ptr() as _,
+                              pubkeys.len() as _)
+    }
+}
+
 // ################
 // # Promises API #
 // ################
