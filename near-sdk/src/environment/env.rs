@@ -391,29 +391,16 @@ pub fn ecrecover(
     }
 }
 
-pub fn verify_bls12_381(signature: &[u8],
-                        msg: &[u8],
-                        pubkey: &[u8]) -> u64 {
-    unsafe {
-        sys::verify_bls12_381(signature.as_ptr() as _,
-                              signature.len() as _,
-                              msg.as_ptr() as _,
-                              msg.len() as _,
-                              pubkey.as_ptr() as _,
-                              pubkey.len() as _)
-    }
-}
-
-pub fn verify_aggregate_bls12_381(aggregate_signature: &[u8],
+pub fn bls12_381_aggregate_verify(aggregate_signature: &[u8],
                         msg: &[u8],
                         pubkeys: &[u8]) -> u64 {
     unsafe {
-        sys::verify_aggregate_bls12_381(aggregate_signature.as_ptr() as _,
-                              aggregate_signature.len() as _,
-                              msg.as_ptr() as _,
-                              msg.len() as _,
-                              pubkeys.as_ptr() as _,
-                              pubkeys.len() as _)
+        sys::bls12_381_aggregate_verify(aggregate_signature.as_ptr() as _,
+                                        aggregate_signature.len() as _,
+                                        msg.as_ptr() as _,
+                                        msg.len() as _,
+                                        pubkeys.as_ptr() as _,
+                                        pubkeys.len() as _)
     }
 }
 
