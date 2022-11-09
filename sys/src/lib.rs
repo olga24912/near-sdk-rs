@@ -44,13 +44,8 @@ extern "C" {
         malleability_flag: u64,
         register_id: u64,
     ) -> u64;
-    pub fn verify_bls12_381(signature_ptr: u64,
-                            signature_len: u64,
-                            msg_ptr: u64,
-                            msg_len: u64,
-                            pubkey_ptr: u64,
-                            pubkey_len: u64) -> u64;
-    pub fn verify_aggregate_bls12_381(aggregate_signature_ptr: u64,
+
+    pub fn bls12_381_aggregate_verify(aggregate_signature_ptr: u64,
                                       aggregate_signature_len: u64,
                                       msg_ptr: u64,
                                       msg_len: u64,
