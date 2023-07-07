@@ -45,12 +45,9 @@ extern "C" {
         register_id: u64,
     ) -> u64;
 
-    pub fn bls12_381_aggregate_verify(aggregate_signature_ptr: u64,
-                                      aggregate_signature_len: u64,
-                                      msg_ptr: u64,
-                                      msg_len: u64,
-                                      pubkeys_ptr: u64,
-                                      pubkeys_len: u64) -> u64;
+    pub fn bls12381_decompress_g1(value_len: u64,
+                                  value_ptr: u64,
+                                  register_id: u64);
     // #####################
     // # Miscellaneous API #
     // #####################

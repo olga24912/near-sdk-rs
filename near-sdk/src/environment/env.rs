@@ -284,7 +284,7 @@ pub fn random_seed_array() -> [u8; 32] {
 ///
 /// assert_eq!(
 ///     sha256(b"The phrase that will be hashed"),
-///     hex::decode("7fc38bc74a0d0e592d2b8381839adc2649007d5bca11f92eeddef78681b4e3a3").expect("Decoding failed")
+///     hex::decode("7fc38b-c74a0d0e592d2b8381839adc2649007d5bca11f92eeddef78681b4e3a3").expect("Decoding failed")
 /// );
 /// ```
 pub fn sha256(value: &[u8]) -> Vec<u8> {
@@ -391,16 +391,13 @@ pub fn ecrecover(
     }
 }
 
-pub fn bls12_381_aggregate_verify(aggregate_signature: &[u8],
-                        msg: &[u8],
-                        pubkeys: &[u8]) -> u64 {
+pub fn bls12381_decompress_g1(points: &[u8]) -> Vec<u8> {
     unsafe {
-        sys::bls12_381_aggregate_verify(aggregate_signature.as_ptr() as _,
-                                        aggregate_signature.len() as _,
-                                        msg.as_ptr() as _,
-                                        msg.len() as _,
-                                        pubkeys.as_ptr() as _,
-                                        pubkeys.len() as _)
+        sys::bls12381_decompress_g1(points.len() as _,
+                                    points.as_ptr() as _,
+                                    ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
     }
 }
 
