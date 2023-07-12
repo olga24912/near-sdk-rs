@@ -45,7 +45,17 @@ extern "C" {
         register_id: u64,
     ) -> u64;
 
-    pub fn bls12381_decompress_g1(value_len: u64,
+    pub fn bls12381_g1_sum(value_len: u64, value_ptr: u64, register_id: u64);
+    pub fn bls12381_g2_sum(value_len: u64, value_ptr: u64, register_id: u64);
+    pub fn bls12381_g1_multiexp(value_len: u64, value_ptr: u64, register_id: u64);
+    pub fn bls12381_g2_multiexp(value_len: u64, value_ptr: u64, register_id: u64);
+    pub fn bls12381_map_fp_to_g1(value_len: u64, value_ptr: u64, register_id: u64);
+    pub fn bls12381_map_fp2_to_g2(value_len: u64, value_ptr: u64, register_id: u64);
+    pub fn bls12381_pairing_check(value_len: u64, value_ptr: u64) -> u64;
+    pub fn bls12381_g1_decompress(value_len: u64,
+                                  value_ptr: u64,
+                                  register_id: u64);
+    pub fn bls12381_g2_decompress(value_len: u64,
                                   value_ptr: u64,
                                   register_id: u64);
     // #####################

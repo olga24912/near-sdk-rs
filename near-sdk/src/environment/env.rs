@@ -391,9 +391,86 @@ pub fn ecrecover(
     }
 }
 
-pub fn bls12381_decompress_g1(points: &[u8]) -> Vec<u8> {
+pub fn bls12381_g1_sum(points: &[u8]) -> Vec<u8> {
     unsafe {
-        sys::bls12381_decompress_g1(points.len() as _,
+        sys::bls12381_g1_sum(points.len() as _,
+                             points.as_ptr() as _,
+                             ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
+    }
+}
+
+pub fn bls12381_g2_sum(points: &[u8]) -> Vec<u8> {
+    unsafe {
+        sys::bls12381_g2_sum(points.len() as _,
+                                  points.as_ptr() as _,
+                                  ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
+    }
+}
+
+pub fn bls12381_g1_multiexp(points: &[u8]) -> Vec<u8> {
+    unsafe {
+        sys::bls12381_g1_multiexp(points.len() as _,
+                                  points.as_ptr() as _,
+                                  ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
+    }
+}
+
+pub fn bls12381_g2_multiexp(points: &[u8]) -> Vec<u8> {
+    unsafe {
+        sys::bls12381_g2_multiexp(points.len() as _,
+                                   points.as_ptr() as _,
+                                   ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
+    }
+}
+
+pub fn bls12381_map_fp_to_g1(points: &[u8]) -> Vec<u8> {
+    unsafe {
+        sys::bls12381_map_fp_to_g1(points.len() as _,
+                                    points.as_ptr() as _,
+                                    ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
+    }
+}
+
+pub fn bls12381_map_fp2_to_g2(points: &[u8]) -> Vec<u8> {
+    unsafe {
+        sys::bls12381_map_fp2_to_g2(points.len() as _,
+                                    points.as_ptr() as _,
+                                    ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
+    }
+}
+
+pub fn bls12381_pairing_check(points: &[u8]) -> u64 {
+    unsafe {
+        sys::bls12381_pairing_check(points.len() as _,
+                                    points.as_ptr() as _)
+    }
+}
+
+pub fn bls12381_g1_decompress(points: &[u8]) -> Vec<u8> {
+    unsafe {
+        sys::bls12381_g1_decompress(points.len() as _,
+                                    points.as_ptr() as _,
+                                    ATOMIC_OP_REGISTER);
+
+        read_register(ATOMIC_OP_REGISTER).unwrap()
+    }
+}
+
+pub fn bls12381_g2_decompress(points: &[u8]) -> Vec<u8> {
+    unsafe {
+        sys::bls12381_g2_decompress(points.len() as _,
                                     points.as_ptr() as _,
                                     ATOMIC_OP_REGISTER);
 
