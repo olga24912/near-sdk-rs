@@ -452,9 +452,15 @@ pub fn bls12381_map_fp2_to_g2(points: &[u8]) -> Vec<u8> {
 }
 
 pub fn bls12381_pairing_check(points: &[u8]) -> u64 {
-    unsafe {
+    let error_code = unsafe {
         sys::bls12381_pairing_check(points.len() as _,
                                     points.as_ptr() as _)
+    };
+
+    if error_code == 0 {
+        1
+    } else {
+        0
     }
 }
 
